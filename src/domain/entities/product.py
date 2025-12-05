@@ -1,0 +1,18 @@
+from decimal import Decimal
+
+from pydantic import BaseModel, Field
+from uuid import uuid4, UUID
+class Product(BaseModel):
+    id: UUID = Field(default_factory=uuid4)
+    name: str
+    price: Decimal
+    stock: int
+
+    def can_purchase(self, quantity: int) -> bool:
+        return self.stock >= quantity
+
+    def reduce_stock(self, quantity:int) -> None:
+        if not self.can_purchase(quantity):
+            raise ValueError("Insufficient stock")
+
+    
