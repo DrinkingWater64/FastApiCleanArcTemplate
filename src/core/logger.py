@@ -1,5 +1,5 @@
-import logging
 from logging.config import dictConfig
+import logging
 
 LOGGING_CONFIG = {
     "version": 1,
@@ -33,4 +33,4 @@ def setup_logging():
     dictConfig(LOGGING_CONFIG)
 
 def get_logger(name: str):
-    return logging.get_logger(name)
+    return logging.getLogger(name)

@@ -9,9 +9,10 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 
 from src.core.config import settings
-from src.core.logging import get_logger
+from src.core.logger import get_logger, setup_logging
 from src.presentation.api import products
 
+setup_logging()
 logger = get_logger(__name__)
 
 @asynccontextmanager
@@ -34,7 +35,7 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_header=["*"]
+    allow_headers=["*"]
 )
 
 @app.middleware("http")

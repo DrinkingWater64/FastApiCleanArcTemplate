@@ -1,5 +1,4 @@
 from decimal import Decimal
-from itertools import product
 from uuid import UUID
 
 from src.domain.entities.product import Product
