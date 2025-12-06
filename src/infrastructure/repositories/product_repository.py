@@ -35,11 +35,11 @@ class SQLAlchemyProductRepository(IProductRepository):
     async def save(self, product: Product) -> Product:
         product_orm = self._to_orm(product)
         await self._session.merge(product_orm)
+        # commit will be done from uni of work
         return product
 
     async def list_all(self) -> List[Product]:
         stmt = select(ProductORM).order_by(ProductORM.name)
-
         result = await self._session.execute(stmt)
         orm_models = result.scalars().all()
 
@@ -47,7 +47,6 @@ class SQLAlchemyProductRepository(IProductRepository):
 
     async def get_by_id(self, id: UUID) -> Optional[Product]:
         stmt = select(ProductORM).where(ProductORM.id == id)
-
         result = await self._session.execute(stmt)
         orm_model = result.scalar_one_or_none()
 

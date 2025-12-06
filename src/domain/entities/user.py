@@ -13,3 +13,5 @@ class User(BaseModel):
     # we include them as optional because these do not exist  untile we save them in db
     created_at: Optional[datetime] = None
     last_modified_at: Optional[datetime] = None
+
+    model_config = {"from_attributes": True}
