@@ -10,7 +10,7 @@ from starlette.requests import Request
 
 from src.core.config import settings
 from src.core.logger import get_logger, setup_logging
-from src.presentation.api import products
+from src.presentation.api import products, users
 
 setup_logging()
 logger = get_logger(__name__)
@@ -48,6 +48,7 @@ async def add_process_time_header(request: Request, call_next):
     return response
 
 app.include_router(products.router, prefix=settings.API_V1_STR)
+app.include_router(users.router, prefix=settings.API_V1_STR)
 
 @app.get("/health")
 async def health_check():

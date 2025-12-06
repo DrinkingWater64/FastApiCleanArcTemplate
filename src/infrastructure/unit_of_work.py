@@ -2,6 +2,7 @@ from sqlalchemy.ext.asyncio import async_sessionmaker
 
 from src.domain.unit_of_work import IUnitOfWork
 from src.infrastructure.repositories.product_repository import SQLAlchemyProductRepository
+from src.infrastructure.repositories.user_repository import SQLAlchemyUserRepository
 
 
 class SQLAlchemyUnitOfWork(IUnitOfWork):
@@ -11,6 +12,7 @@ class SQLAlchemyUnitOfWork(IUnitOfWork):
     async def __aenter__(self):
         self._session = self._session_factory()
         self.products = SQLAlchemyProductRepository(self._session)
+        self.users = SQLAlchemyUserRepository(self._session)
         return self
 
     async def __aexit__(self, *args):
