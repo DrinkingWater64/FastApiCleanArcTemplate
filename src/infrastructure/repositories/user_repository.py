@@ -25,7 +25,7 @@ class SQLAlchemyUserRepository(IUserRepository):
 
     async def get_by_email(self, email: str) -> Optional[User]:
         stmt = select(UserOrm).where(UserOrm.email == email)
-        result =self._session.execute(stmt)
+        result = await self._session.execute(stmt)
         user_orm = result.scalar_one_or_none()
         return self._to_entity(user_orm) if user_orm else None
 

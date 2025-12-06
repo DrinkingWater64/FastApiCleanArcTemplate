@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 from src.presentation.dependencies import ProductServiceDep
 
-router = APIRouter(prefix="/products")
+router = APIRouter(prefix="/users")
 
 class ProductCreate(BaseModel):
     name: str
