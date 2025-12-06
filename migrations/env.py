@@ -14,6 +14,7 @@ from src.core.config import settings
 from src.infrastructure.schemas.base_orm import Base
 from src.infrastructure.schemas.product_orm import ProductORM  # ensure models are imported
 from src.infrastructure.schemas.user_orm import UserOrm
+from src.infrastructure.schemas.mixin import TimestampMixin
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL.replace("asyncpg", "psycopg2"))

@@ -4,9 +4,10 @@ from sqlalchemy import UUID, String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.infrastructure.schemas.base_orm import Base
+from src.infrastructure.schemas.mixin import TimestampMixin
 
 
-class UserOrm(Base):
+class UserOrm(Base, TimestampMixin):
     __tablename__ = "users"
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True)

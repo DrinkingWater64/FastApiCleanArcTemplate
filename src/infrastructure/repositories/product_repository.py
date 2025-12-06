@@ -16,12 +16,8 @@ class SQLAlchemyProductRepository(IProductRepository):
 
     # Helper to convert ORM -> Entity
     def _to_entity(self, orm_model: ProductORM) -> Product:
-        return Product(
-            id=orm_model.id,
-            name=orm_model.name,
-            price=orm_model.price,
-            stock=orm_model.stock,
-        )
+        return Product.model_validate(orm_model, from_attributes=True)
+
 
     # Helper to convert Entity -> ORM
     def _to_orm(self, entity: Product) -> ProductORM:
