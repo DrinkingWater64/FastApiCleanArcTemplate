@@ -21,5 +21,7 @@ class Product(BaseModel):
     def reduce_stock(self, quantity:int) -> None:
         if not self.can_purchase(quantity):
             raise ValueError("Insufficient stock")
+        else:
+            self.stock = self.stock - quantity
 
     
